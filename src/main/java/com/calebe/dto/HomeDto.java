@@ -1,6 +1,10 @@
 package com.calebe.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Table(name="mars_api_preferences")
 public class HomeDto {
 	// Properties
+	private Long id;
 	private Long userId;
 	private String marsApiRoverData;
 	private Integer marsSol;
@@ -24,12 +29,13 @@ public class HomeDto {
 	private Boolean rememberPreferences;
 
 	// Getters and setters
-	public String getMarsApiRoverData() {
-		return marsApiRoverData;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	public Long getId() {
+		return id;
 	}
-	
-	public void setMarsApiRoverData(String marsApiRoverData) {
-		this.marsApiRoverData = marsApiRoverData;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public Long getUserId() {
@@ -38,6 +44,15 @@ public class HomeDto {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+	
+	@Column(length=20)
+	public String getMarsApiRoverData() {
+		return marsApiRoverData;
+	}
+	
+	public void setMarsApiRoverData(String marsApiRoverData) {
+		this.marsApiRoverData = marsApiRoverData;
 	}
 	
 	public Integer getMarsSol() {
