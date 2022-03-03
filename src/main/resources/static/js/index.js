@@ -2,6 +2,18 @@
 let userId = getUrlParameter('userId');
 if(userId === null || userId === '') {
 	userId = localStorage.getItem('userId');
+	
+	if(userId === null || userId === '') {
+		document.getElementById('createUser').value = true;
+	} else {
+		/*fetch('/savedPreferences?userId='+userId)
+			.then(response => response.json())
+			.then(jsonResponse => {
+				console.log(jsonResponse);
+			});*/
+		window.location.href = '/?userId=' + userId;
+	}
+	
 }
 
 if(userId !== null && userId !== '') {
@@ -26,8 +38,6 @@ marsApiButtons.forEach(button => button.addEventListener('click', function () {/
 
 //Now it starts the catching of parameter name for showing when a button was clicked and what rover we are seeing
 
-
-
 function getUrlParameter(name) {// Method used below
 	name = name.replace(/[\[]/, '\\[').replace(/{\]]/, '\\');
 	var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -35,7 +45,7 @@ function getUrlParameter(name) {// Method used below
 	return results == null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
-let marsRoverType = getUrlParameter("marsApiRoverData");// Get the value from the parameter handed over by the url
+let marsRoverType = document.getElementById('marsApiRoverData').value;
 
 const highlightButtonByRoverType = (roverType) => {
 	
@@ -49,7 +59,7 @@ const highlightButtonByRoverType = (roverType) => {
 highlightButtonByRoverType(marsRoverType);
 
 // Now it changes the value of marsDay when clicked and redirected
-let marsSol = getUrlParameter('marsSol');
+let marsSol = document.getElementById('marsSol').value;
 
 if(marsSol === null || marsSol === '')//Checking if number is not initatialized
 	marsSol = 1;

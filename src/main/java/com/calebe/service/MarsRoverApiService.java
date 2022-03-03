@@ -8,12 +8,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.calebe.dto.HomeDto;
 import com.calebe.response.MarsPhoto;
 import com.calebe.response.MarsRoverApiResponse;
+import com.calebe.respository.PreferencesRepository;
 
 @Service
 public class MarsRoverApiService {
@@ -32,6 +34,9 @@ public class MarsRoverApiService {
 		validCameras.put("Spirit", Arrays.asList("FHAZ", "RHAZ", "NAVCAM",
 				"PANCAM", "MINITES"));//Spirit likewise
 	}
+	
+	@Autowired
+	private PreferencesRepository preferencesRepo; //This is a instance from the repository that will be autowired
 	
 	public MarsRoverApiResponse getRoverData(HomeDto homeDto) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException  {
 		RestTemplate rt = new RestTemplate(); // Rest Template
@@ -79,6 +84,14 @@ public class MarsRoverApiService {
 	
 	public Map<String, List<String>> getValidCameras() {
 		return validCameras;
+	}
+
+	public HomeDto save(HomeDto homeDto) {
+		return preferencesRepo.save(homeDto);
+	}
+
+	public HomeDto findByUserId(Long userId) {
+		return preferencesRepo.findByUserId(userId);
 	}
 	
 }	

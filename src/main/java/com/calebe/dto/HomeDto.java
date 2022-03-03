@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Table(name="mars_api_preferences")
 public class HomeDto {
 	// Properties
-	private Long id;
 	private Long userId;
 	private String marsApiRoverData;
 	private Integer marsSol;
@@ -30,14 +29,6 @@ public class HomeDto {
 
 	// Getters and setters
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
 	public Long getUserId() {
 		return userId;
 	}

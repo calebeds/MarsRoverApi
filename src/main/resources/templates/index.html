@@ -16,8 +16,9 @@
 		<h2 class="mt-3 mx-auto">Welcome to the Mars Rover API Web App</h2>
 
 		<form method="POST" action="" id="frmRoverType">
-			<input type="hidden" th:field="${homeDto.marsApiRoverData}" />
+			<input type="hidden" id="marsApiRoverData" th:field="${homeDto.marsApiRoverData}" />
 			<input type="hidden" th:field="${homeDto.userId}" />
+			<input type="hidden" id="createUser" name="createUser" value="false" />
 			<hr />
 			
 			<div class="row">
@@ -136,7 +137,7 @@
 
 			<div class="form-group col-form-label-lg mb-3">
 				<label for="marsSol">Mars Sol (aka Mars Day): </label>
-				<input type="number" class="form-control form-control-lg" th:field="${homeDto.marsSol}" min="0" />
+				<input type="number" id="marsSol" class="form-control form-control-lg" th:field="${homeDto.marsSol}" min="0" />
 			</div>
 			<div class="row">
 				<div class="col-3 col-md-2">
